@@ -1,7 +1,7 @@
 "use server"
 
-import {redirect} from "next/navigation"
-import {addBlog, likeBlog} from "../services/blogs"
+import { redirect } from "next/navigation"
+import { addBlog, likeBlog } from "../services/blogs"
 import { revalidatePath } from "next/cache"
 
 export const createBlog = async (formData: FormData) => {
@@ -18,4 +18,9 @@ export const likingBlog = async (formData: FormData) => {
   likeBlog(id)
   revalidatePath(`/blogs/${id}`)
   revalidatePath('/blogs')
+}
+
+export const searchBlog = async (formData: FormData) => {
+  const filter = formData.get("filter")
+  redirect(`/blogs?filter=${filter}`)
 }

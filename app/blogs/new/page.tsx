@@ -8,19 +8,19 @@ const NewBlog = () => {
         <div>
           <label>
             Title
-            <input type="text" name="title"></input>
+            <input type="text" name="title" />
           </label>
         </div>
         <div>
           <label>
             Author
-            <input type="text" name="author"></input>
+            <input type="text" name="author" />
           </label>
         </div>
         <div>
           <label>
             URL
-            <input type="text" name="url"></input>
+            <input type="text" name="url" />
           </label>
         </div>
         <button type="submit">Create</button>
