@@ -6,7 +6,7 @@ const Blog = () => {
     <div>
       <h1>Blogs</h1>
       <ul>
-        {blogs.map((b) => (
+        {(blogs.sort((a, b) => b.likes - a.likes)).map((b) => (
           <li key={b.id}>
             <Link href={`/blogs/${b.id}`}>
               <strong>{b.title}</strong>
