@@ -1,21 +1,6 @@
-const blogs = [
-  {
-    id: 1,
-    title: "first blog",
-    author: "anon",
-    url: "http://localhost/",
-    likes: 0,
-  },
-  {
-    id: 2,
-    title: "Second Blog",
-    author: "anon",
-    url: "http://localhost/",
-    likes: 0,
-  }
-]
-
+import {getBlogs} from '../services/blogs'
 const Blog = () => {
+  const blogs = getBlogs()
   return(
     <div>
       <h1>Blogs</h1>
