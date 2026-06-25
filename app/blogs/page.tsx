@@ -4,13 +4,13 @@ import { searchBlog } from '../actions/blogs'
 const Blog = async ({
   searchParams,
 }: {
-  searchParams: Promise<{filter?: string}>
+  searchParams: Promise<{ filter?: string }>
 }) => {
-  const {filter} = await searchParams
-  const allblogs = getBlogs()
-  const blogs = filter
+  const { filter } = await searchParams
+  const blogs = await getBlogs(filter)
+  /* const blogs = filter
     ? allblogs.filter(b => b.title.toLowerCase().includes(filter.toLowerCase()))
-    : allblogs
+    : allblogs */
 
   return(
     <div>
