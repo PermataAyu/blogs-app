@@ -6,10 +6,11 @@ const User = async () => {
 
   return(
     <div>
+      <h2>Users</h2>
       <ul>
         {users.map((u) => (
           <li key={u.id}>
-            <Link href={`/users/${u.id}`}>{u.name}</Link>
+            <Link href={`/users/${u.username}`}>{u.name}</Link>
           </li>
         ))}
       </ul>
