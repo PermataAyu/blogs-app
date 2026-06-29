@@ -1,5 +1,8 @@
+import "./globals.css"
 import AuthSessionProvider from "./components/SessionProvider";
 import NavBar from "./components/NavBar";
+import { NotifProvider } from "./components/NotifContex";
+import Notif from "./components/Notif";
 
 export default function RootLayout({
   children,
@@ -8,10 +11,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="min-h-screen bg-background text-foreground">
         <AuthSessionProvider>
-          <NavBar />
-          {children}
+          <NotifProvider>
+            <NavBar />
+            <Notif />
+            {children}
+          </NotifProvider>
         </AuthSessionProvider>
       </body>
     </html>

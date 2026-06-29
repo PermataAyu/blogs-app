@@ -7,7 +7,7 @@ import { eq } from "drizzle-orm"
 import { redirect } from "next/navigation"
 
 export const registerUser = async (
-  prevState: {errors: object, values: object},
+  prevState: {errors: object, values?: object, success?: boolean},
   formData: FormData
 ) => {
   const errors: {[key: string]: string} = {}
@@ -25,12 +25,12 @@ export const registerUser = async (
   }
 
   if (Object.keys(errors).length > 0) {
-    return {errors, values: {username, name}}
+    return {errors, values: {username, name}, success: false}
   }
 
   const passwordHash = await bcrypt.hash(password, 10)
 
   await db.insert(users).values({username, name, passwordHash})
 
-  redirect("/login")
+  return {errors, success: true}
 }

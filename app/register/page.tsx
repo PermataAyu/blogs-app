@@ -1,21 +1,30 @@
 "use client"
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { registerUser } from "../actions/users";
+import { useNotif } from "../components/NotifContex";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
   const initialState = {
-    errors: {
-      password: "",
-      username: ""
-    },
+    errors: {},
     values: {
       username: "",
       name: ""
-    }
+    },
+    success: false
   }
 
   const [state, formAction] = useActionState(registerUser, initialState)
+  const {showNotif} = useNotif()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (state.success) {
+      showNotif("User Created")
+      router.push("/login")
+    }
+  }, [state, showNotif, router])
   return (
     <div>
       <h2>Register</h2>
@@ -23,14 +32,14 @@ export default function RegisterPage() {
         <div>
           <label>
             Username
-            <input name="username" type="text" required defaultValue={state.values.username}/>
-            {state.errors.username && <p style={{color: "red"}}>{state.errors.username}</p>}
+            <input name="username" type="text" required defaultValue={state.values?.username}/>
           </label>
+          {state.errors.username && <p style={{color: "red"}}>{state.errors.username}</p>}
         </div>
         <div>
           <label>
             Name
-            <input name="name" type="text" required defaultValue={state.values.name}/>
+            <input name="name" type="text" required defaultValue={state.values?.name}/>
           </label>
         </div>
         <div>
