@@ -4,7 +4,19 @@ import { useActionState } from "react"
 import { createBlog } from "../../actions/blogs"
 
 const NewBlog = () => {
-  const [state, formAction] = useActionState(createBlog, {error: ""})
+  const initialState = {
+    errors: {
+      title: "",
+      author: "",
+      url: ""
+    },
+    values: {
+      title: "",
+      author: "",
+      url: ""
+    }
+  }
+  const [state, formAction] = useActionState(createBlog, initialState)
   return(
     <div>
       <h2>Create a new blog</h2>
@@ -12,23 +24,25 @@ const NewBlog = () => {
         <div>
           <label>
             Title
-            <input type="text" name="title" />
+            <input type="text" name="title" defaultValue={state.values.title}/>
           </label>
+          {state.errors.title && <p style={{color: "red"}}>{state.errors.title}</p>}
         </div>
         <div>
           <label>
             Author
-            <input type="text" name="author" />
+            <input type="text" name="author" defaultValue={state.values.author}/>
           </label>
+          {state.errors.author && <p style={{color: "red"}}>{state.errors.author}</p>}
         </div>
         <div>
           <label>
             URL
-            <input type="text" name="url" />
+            <input type="text" name="url" defaultValue={state.values.url}/>
           </label>
+          {state.errors.url && <p style={{color: "red"}}>{state.errors.url}</p>}
         </div>
         <button type="submit">Create</button>
-        {state.error && <p style={{color: "red"}}>{state.error}</p>}
       </form>
     </div>
   )

@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache"
 import { auth } from "@/auth"
 
 export const createBlog = async (
-  prevState: {error: string},
+  prevState: {errors: object, values: object},
   formData: FormData
 ) => {
   const session = await auth()
@@ -15,20 +15,25 @@ export const createBlog = async (
     redirect("/login")
   }
 
-  const title = formData.get("title") as string
+  const errors: {[key: string]: string} = {}
 
+  const title = formData.get("title") as string
   if ( !title || title.length < 5 ) {
-    return { error: "Title minimum 5 character long" }
+    errors.title = "title minimum 5 character long"
   }
   const author = formData.get("author") as string
   if ( !author || author.length < 5 ) {
-    return {error: "Author minimum 5 character long"}
+    errors.author = "Author minimum 5 character long"
   }
   const url = formData.get("url") as string
   if ( !url || url.length < 5 ) {
-    return {error: "URL minimum 5 character long"}
+    errors.url = "URL minimum 5 character long"
   }
   
+  if (Object.keys(errors).length > 0) {
+    return { errors, values: {title, author, url}}
+  }
+
   await addBlog(title, author, url)
   revalidatePath('/blogs')
   redirect('/blogs')
