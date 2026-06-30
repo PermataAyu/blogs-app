@@ -12,3 +12,8 @@ export const getUserWithBlogs = async (username: string) => {
     with: {blogs: true}
   })
 }
+
+export const saveToken = async (token: string, username: string) => {
+  await db.update(users).set({apiToken: token}).where(eq(users.username, username))
+  console.log(token)
+}

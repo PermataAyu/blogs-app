@@ -4,7 +4,8 @@ import { db } from "@/db"
 import { users } from "@/db/schema"
 import bcrypt from "bcryptjs"
 import { eq } from "drizzle-orm"
-import { redirect } from "next/navigation"
+import { saveToken } from "../services/users"
+import { revalidatePath } from "next/cache"
 
 export const registerUser = async (
   prevState: {errors: object, values?: object, success?: boolean},
@@ -33,4 +34,11 @@ export const registerUser = async (
   await db.insert(users).values({username, name, passwordHash})
 
   return {errors, success: true}
+}
+
+export const generateToken = async(formData: FormData) => {
+  const username = formData.get("username") as string
+  const token = crypto.randomUUID()
+  await saveToken(token, username)
+  revalidatePath('/me')
 }
