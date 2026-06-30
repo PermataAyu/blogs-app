@@ -13,16 +13,16 @@ const Blog = async ({
     : allblogs */
 
   return(
-    <div>
-      <h1>Blogs</h1>
+    <div className="mx-auto p-6">
+      <h1 className="font-bold mb-4 text-3xl">Blogs</h1>
       <form action={searchBlog}>
-        <input name="filter" />
-        <button type="submit">Search</button>
+        <input name="filter" className='border p-1 rounded'/>
+        <button type="submit" className='border m-2 p-1 rounded'>Search</button>
       </form>
-      <ul>
+      <ul className="space-y-2">
         {(blogs.sort((a, b) => b.likes - a.likes)).map((b) => (
-          <li key={b.id}>
-            <Link href={`/blogs/${b.id}`}>
+          <li key={b.id} className="border rounded p-3 hover:bg-gray-800">
+            <Link href={`/blogs/${b.id}`} className='text-blue-600 hover:underline'>
               <strong>{b.title}</strong>
             </Link> by <strong>{b.author}</strong>
           </li>
