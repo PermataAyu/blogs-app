@@ -43,7 +43,6 @@ export const likingBlog = async (formData: FormData) => {
   const id = Number(formData.get("id"))
   await likeBlog(id)
   revalidatePath(`/blogs/${id}`)
-  revalidatePath('/blogs')
 }
 
 export const searchBlog = async (formData: FormData) => {

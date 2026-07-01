@@ -10,7 +10,15 @@ export const GET = async (req: NextRequest) => {
   }
   const user = await db.query.users.findFirst({
     where: eq(users.apiToken, token.substring(7)),
-    with: {blogs: true} ,
+    with: {
+      blogs: {
+        columns: {
+          title: true,
+          author: true,
+          url: true
+        }
+      }
+    } ,
     columns: {
       apiToken: false,
       passwordHash: false

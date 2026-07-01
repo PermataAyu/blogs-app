@@ -10,6 +10,13 @@ export const getCurrentUser = async () => {
   }
 
   return db.query.users.findFirst({
-    where: eq(users.username, session.user.email)
+    where: eq(users.username, session.user.email),
+    with: {
+      readingLists: {
+        with: {
+          blogs: true
+        }
+      }
+    }
   })
 }

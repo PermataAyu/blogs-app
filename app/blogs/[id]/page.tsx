@@ -1,3 +1,4 @@
+import { createList } from "@/app/actions/readings"
 import { likingBlog } from "../../actions/blogs"
 import { getBlogById } from "../../services/blogs"
 import { notFound } from "next/navigation"
@@ -21,10 +22,19 @@ const NotePage = async ({params}: {params: Promise<{id: string}>}) => {
       <form action={likingBlog}>
         <input type="hidden" name="id" value={blog.id} />
         <button 
-          className="border rounded px-2 py-1 text-sm hover:bg-gray-50 hover:text-gray-950" 
+          className="border rounded px-2 py-1 text-sm hover:bg-gray-50 hover:text-gray-950"
           type="submit"
         >
           Like
+        </button>
+      </form>
+      <form action={createList}>
+        <input type="hidden" name="blogid" value={blog.id}/>
+        <button 
+          type="submit"
+          className="border rounded px-2 py-1 text-sm hover:bg-gray-50 hover:text-gray-950"
+        >
+          add to reading list
         </button>
       </form>
     </div>
