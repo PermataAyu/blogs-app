@@ -1,18 +1,21 @@
 import { notFound } from "next/navigation"
 import { getCurrentUser } from "../services/session"
 import { generateToken } from "../actions/users"
+import { markRead } from "../actions/readings"
 
 
 const Me = async() => {
   const me = await getCurrentUser()
   const list = me?.readingLists
+  const readLists = list?.filter((l) => l.read === true)
+  const unreadLists = list?.filter((l) => l.read === false)
 
   if (!me) {
     notFound()
   }
 
   return (
-    <div>
+    <div className="mx-auto p-6 max-w-3xl">
       <div>
         <h2>My profile</h2>
         <p><strong>Name: </strong> {me.name}</p>
@@ -20,10 +23,23 @@ const Me = async() => {
       </div>
       <div>
         <h2>Reading List</h2>
+        <h3>Unread ({unreadLists ? unreadLists.length : "0"})</h3>
         <ul>
-          {list?.map((l) => (
-            <li key={l.id}>
-              {l.blogs?.title} - {l.read ? "read" : "not read"}
+          {unreadLists?.map((ul) => (
+            <li key={ul.id} className="border bg-yellow-500">
+              <form action={markRead}>
+                {ul.blogs?.title} {" - "}
+                <input type="hidden" name="id" value={ul.id}/>
+                <button type="submit" className="border bg-green-500 cursor-pointer">mark as read</button>
+              </form>
+            </li>
+          ))}
+        </ul>
+        <h3>Read ({readLists ? readLists.length : "0"})</h3>
+        <ul>
+          {readLists?.map((rl) => (
+            <li key={rl.id} className="border bg-green-500">
+              {rl.blogs?.title}
             </li>
           ))}
         </ul>
