@@ -1,2 +1,16 @@
 GET http://localhost:3000/api/me
 Authorization: Bearer 7732e8c1-5fd1-4c2a-8add-f9cca29a0592
+
+###
+
+POST http://localhost:3000/api/testing/users
+
+{
+  "username": "testuser",
+  "name": "Test User",
+  "password": "testpass123"
+}
+
+###
+
+DELETE http://localhost:3000/api/testing/reset
