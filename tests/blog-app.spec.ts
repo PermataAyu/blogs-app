@@ -1,8 +1,6 @@
 import { test, expect } from "@playwright/test"
 import { resetDatabase, createUser, loginUser, createBlog } from "./helpers"
 
-test.use({baseURL: "http://localhost:3000"})
-
 test.describe("Blog Application", () => {
   test.beforeEach(async () => {
     await resetDatabase()
