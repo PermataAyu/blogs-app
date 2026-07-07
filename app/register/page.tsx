@@ -25,16 +25,18 @@ export default function RegisterPage() {
       router.push("/login")
     }
   }, [state, showNotif, router])
+
   return (
     <div>
       <h2>Register</h2>
+      {}
       <form action={formAction}>
         <div>
           <label>
             Username
             <input name="username" type="text" required defaultValue={state.values?.username}/>
           </label>
-          {state.errors.username && <p style={{color: "red"}}>{state.errors.username}</p>}
+          {state.errors.username && <p data-testid="username-error" style={{color: "red"}}>{state.errors.username}</p>}
         </div>
         <div>
           <label>
@@ -50,12 +52,12 @@ export default function RegisterPage() {
         </div>
         <div>
           <label>
-            Password Confirm
+            Confirm Password
             <input name="passwordconfirm" type="password" required/>
-            {state.errors.password && <p style={{color: "red"}}>{state.errors.password}</p>}
+            {state.errors.password && <p data-testid="passwordConfirm-error" style={{color: "red"}}>{state.errors.password}</p>}
           </label>
         </div>
-        <button type="submit">Create Account</button>
+        <button type="submit" data-testid="register-button">Create Account</button>
       </form>
     </div>
   )

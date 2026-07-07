@@ -13,7 +13,7 @@ export const POST = async (req: NextRequest) => {
 
   const {username, name, password} = await req.json()
   const passwordHash = await bcrypt.hash(password, 10)
-  const user = await db.insert(users).values({username, name, passwordHash})
+  await db.insert(users).values({username, name, passwordHash})
 
   return NextResponse.json({status: 200})
 }

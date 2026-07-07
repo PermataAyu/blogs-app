@@ -34,41 +34,42 @@ const NewBlog = () => {
         <div className="flex justify-between mb-3">
           <label>
             Title
+            <input 
+              type="text" 
+              name="title" 
+              defaultValue={state.values?.title}
+              className="border rounded ml-3"
+            />
           </label>
-          <input 
-            type="text" 
-            name="title" 
-            defaultValue={state.values?.title}
-            className="border rounded ml-3"
-          />
         </div>
         {state.errors.author && <p className="text-red-500 justify-self-end">{state.errors.author}</p>}
         <div className="flex justify-between mb-3">
           <label>
             Author
+            <input 
+              type="text" 
+              name="author" 
+              defaultValue={state.values?.author}
+              className="border rounded ml-3"
+            />
           </label>
-          <input 
-            type="text" 
-            name="author" 
-            defaultValue={state.values?.author}
-            className="border rounded ml-3"
-          />
         </div>
         {state.errors.url && <p className="text-red-500 justify-self-end">{state.errors.url}</p>}
         <div className="flex justify-between mb-3">
           <label>
             URL
+            <input 
+              type="text" 
+              name="url" 
+              defaultValue={state.values?.url}
+              className="border rounded ml-3"
+            />
           </label>
-          <input 
-            type="text" 
-            name="url" 
-            defaultValue={state.values?.url}
-            className="border rounded ml-3"
-          />
         </div>
         <button 
           type="submit" 
           className="border rounded px-3 cursor-pointer hover:bg-gray-800 max-w-1/3 justify-self-end"
+          data-testid="create-blog-button"
         >
           Create
         </button>

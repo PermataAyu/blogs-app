@@ -2,9 +2,11 @@
 
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import { useNotif } from "../components/NotifContex"
 
 export default function LoginPage() {
   const router = useRouter()
+  const {showNotif} = useNotif()
 
   const handleSubmit = async(e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -17,8 +19,9 @@ export default function LoginPage() {
     })
 
     if(result.error) {
-      console.log("error")
+      showNotif("Wrong Username or Password", "error")
     } else {
+      showNotif("Login Success")
       router.push("/")
       router.refresh()
     }
@@ -40,7 +43,7 @@ export default function LoginPage() {
             <input type="password" name="password" required />
           </label>
         </div>
-        <button type="submit">login</button>
+        <button type="submit" data-testid="login-button">login</button>
       </form>
     </div>
   )

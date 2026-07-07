@@ -12,9 +12,9 @@ const NotePage = async ({params}: {params: Promise<{id: string}>}) => {
   }
 
   return (
-    <div className="mx-auto p-6">
-      <h2 className="text-3xl font-bold pb-5">{blog.title}</h2> 
-      <div>by {blog.author}</div>
+    <div className="mx-auto p-6" data-testid="blog-detail">
+      <h2 className="text-3xl font-bold pb-5" data-testid="blog-title">{blog.title}</h2> 
+      <div data-testid="blog-author">by {blog.author}</div>
       <div><a href={blog.url} className="text-blue-600 hover:underline">{blog.url}</a></div>
       <div>
         {blog.likes} likes
@@ -33,6 +33,7 @@ const NotePage = async ({params}: {params: Promise<{id: string}>}) => {
         <button 
           type="submit"
           className="border rounded px-2 py-1 text-sm hover:bg-gray-50 hover:text-gray-950"
+          data-testid="add-to-reading-list-button"
         >
           add to reading list
         </button>

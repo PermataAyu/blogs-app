@@ -17,6 +17,14 @@ export const registerUser = async (
   const password = formData.get("password") as string
   const passwordConfirm = formData.get("passwordconfirm") as string
 
+  if (!username || username.length < 4) {
+    errors.username = "username too short"
+  }
+
+  if (!password || password.length < 4) {
+    errors.password = "password too short"
+  }
+
   if (password !== passwordConfirm) {
     errors.password = "password doesnt match"
   }

@@ -11,6 +11,7 @@ export default function Notif() {
 
   const color = type === "success" ? "bg-green-600" : "bg-red-600"
   const style = `p-4 border-inherit rounded ${color}`
+  const id = type === "success" ? "notification" : "error-message"
 
-  return <div className={style}>{message}</div>
+  return <div data-testid={id} className={style}>{message}</div>
 }

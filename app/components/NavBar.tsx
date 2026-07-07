@@ -9,12 +9,12 @@ export default function NavBar() {
   return(
     <nav className="bg-gray-800 px-6 py-3 flex items-center gap-4">
       <NavLink href="/">Home</NavLink>
-      <NavLink href="/blogs">Blogs</NavLink>
+      <NavLink href="/blogs">blogs</NavLink>
       <NavLink href="/users">Users</NavLink>
       {session ? (
         <>
         <NavLink href="/blogs/new">Create Blog</NavLink>
-        <NavLink href="/me">Me</NavLink>
+        <NavLink href="/me">me</NavLink>
         {" "}
         <button 
           onClick={() => signOut()} 
@@ -25,8 +25,8 @@ export default function NavBar() {
         </>
       ) : (
         <>
-        <NavLink href="/login">Login</NavLink>
-        <NavLink href="/register">Register</NavLink>
+        <NavLink href="/login">login</NavLink>
+        <NavLink href="/register">register</NavLink>
         </>
       )}
       
