@@ -1,8 +1,7 @@
 import {defineConfig} from "@playwright/test"
 import dotenv from "dotenv"
 
-const envFile = process.env.NODE_ENV === "test" ? ".env.test" : ".env.local"
-dotenv.config({ path: envFile })
+dotenv.config({ path: ".env.test" })
 
 export default defineConfig({
   testDir: './tests',
