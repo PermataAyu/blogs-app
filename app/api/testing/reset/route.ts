@@ -1,5 +1,5 @@
-import { db } from "@/db"
-import { blogs, readingLists, users } from "@/db/schema"
+import { db } from "../../../../db"
+import { blogs, readingLists, users } from "../../../../db/schema"
 import { NextResponse } from "next/server"
 
 export const DELETE = async () => {
